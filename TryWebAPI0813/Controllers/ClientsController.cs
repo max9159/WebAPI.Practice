@@ -29,10 +29,12 @@ namespace TryWebAPI0813.Controllers
         }
       
         [Route("{id:int}/orders")]
-        public IHttpActionResult GetClientOrders(int id)
+        public HttpResponseMessage GetClientOrders(int id)
         {
             var orders = db.Order.Where(q => q.ClientId == id);
-            return Ok(orders.ToList());
+            return Request.CreateResponse<IQueryable<Order>>(
+            HttpStatusCode.OK, orders,
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter);
         }
 
         [Route("{id:int}/orders/{date:datetime}")]
