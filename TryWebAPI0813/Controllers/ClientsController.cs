@@ -27,14 +27,21 @@ namespace TryWebAPI0813.Controllers
         {
             return Ok(db.Client);
         }
-      
+
         [Route("{id:int}/orders")]
         public HttpResponseMessage GetClientOrders(int id)
         {
             var orders = db.Order.Where(q => q.ClientId == id);
-            return Request.CreateResponse<IQueryable<Order>>(
-            HttpStatusCode.OK, orders,
-            GlobalConfiguration.Configuration.Formatters.JsonFormatter);
+            //return Request.CreateResponse<IQueryable<Order>>(
+            //HttpStatusCode.OK, orders,
+            //GlobalConfiguration.Configuration.Formatters.JsonFormatter);
+            return new HttpResponseMessage()
+            {
+                ReasonPhrase = "HAHA",
+                StatusCode = HttpStatusCode.OK,
+                Content = new ObjectContent<IQueryable<Order>>(orders,
+                GlobalConfiguration.Configuration.Formatters.JsonFormatter)
+            };
         }
 
         [Route("{id:int}/orders/{date:datetime}")]
@@ -57,15 +64,14 @@ namespace TryWebAPI0813.Controllers
 
         [ResponseType(typeof(Client))]
         [Route("{id}")]
-        public IHttpActionResult GetClientById(int id)
+        public HttpResponseMessage GetClientById(int id)
         {
             Client client = db.Client.Find(id);
             if (client == null)
             {
-                return NotFound();
+                return Request.CreateResponse(HttpStatusCode.NotFound);
             }
-
-            return Ok(client);
+            return Request.CreateResponse(client);
         }
 
         [ResponseType(typeof(void))]
