@@ -22,7 +22,6 @@ namespace TryWebAPI0813.Controllers
             db.Configuration.LazyLoadingEnabled = false;
         }
 
-        // GET: api/Clients
         [Route("")]
         public IQueryable<Client> GetClient()
         {
@@ -36,7 +35,6 @@ namespace TryWebAPI0813.Controllers
             return Ok(orders.ToList());
         }
 
-        //Route attr limit 
         [Route("{id:int}/orders/{date:datetime}")]
         public IHttpActionResult GetClientOrdersByDate(int id, DateTime date)
         {
@@ -54,7 +52,7 @@ namespace TryWebAPI0813.Controllers
             var orders = db.Order.Where(p => p.ClientId == id && p.OrderDate >= date && p.OrderDate <= next_day);
             return Ok(orders.ToList());
         }
-        // GET: api/Clients/5
+
         [ResponseType(typeof(Client))]
         [Route("{id}")]
         public IHttpActionResult GetClientById(int id)
@@ -68,7 +66,6 @@ namespace TryWebAPI0813.Controllers
             return Ok(client);
         }
 
-        // PUT: api/Clients/5
         [ResponseType(typeof(void))]
         [Route("{id}")]
         public IHttpActionResult PutClient(int id, Client client)
