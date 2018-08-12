@@ -65,6 +65,8 @@ namespace TryWebAPI0813.Controllers
         [ResponseType(typeof(Client))]
         [Route("{id}")]
         public HttpResponseMessage GetClientById(int id)
+        //[HttpPost] //usally suppose not to use [FromBody], cause it will be messy 
+        //public HttpResponseMessage GetClientById([FromBody]int id)
         {
             Client client = db.Client.Find(id);
             if (client == null)
