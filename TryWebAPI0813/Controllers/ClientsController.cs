@@ -23,9 +23,9 @@ namespace TryWebAPI0813.Controllers
         }
 
         [Route("")]
-        public IQueryable<Client> GetClient()
+        public IHttpActionResult GetClient()
         {
-            return db.Client;
+            return Ok(db.Client);
         }
       
         [Route("{id:int}/orders")]
