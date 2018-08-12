@@ -12,6 +12,8 @@ using TryWebAPI0813.Models;
 
 namespace TryWebAPI0813.Controllers
 {
+    //already added to global.aspx for all api
+    //[MyException]
     [RoutePrefix("clients")]
     public class ClientsController : ApiController
     {
@@ -71,7 +73,7 @@ namespace TryWebAPI0813.Controllers
             Client client = db.Client.Find(id);
             if (client == null)
             {
-                return Request.CreateResponse(HttpStatusCode.NotFound);
+                throw new Exception();
             }
             return Request.CreateResponse(client);
         }
