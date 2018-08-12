@@ -27,7 +27,6 @@ namespace TryWebAPI0813.Controllers
         }
 
         // GET: api/Products/5
-        [ResponseType(typeof(Product))]
         public IHttpActionResult GetProduct(int id)
         {
             Product product = db.Product.Find(id);
@@ -40,7 +39,6 @@ namespace TryWebAPI0813.Controllers
         }
 
         // PUT: api/Products/5
-        [ResponseType(typeof(void))]
         public IHttpActionResult PutProduct(int id, Product product)
         {
             if (!ModelState.IsValid)
@@ -75,7 +73,6 @@ namespace TryWebAPI0813.Controllers
         }
 
         // POST: api/Products
-        [ResponseType(typeof(Product))]
         public IHttpActionResult PostProduct(Product product)
         {
             if (!ModelState.IsValid)
