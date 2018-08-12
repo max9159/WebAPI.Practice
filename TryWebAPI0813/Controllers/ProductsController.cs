@@ -21,7 +21,10 @@ namespace TryWebAPI0813.Controllers
         {
             return db.Product;
         }
-
+        public ProductsController()
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+        }
 
         // GET: api/Products/5
         [ResponseType(typeof(Product))]
