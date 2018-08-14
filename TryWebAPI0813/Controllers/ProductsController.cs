@@ -7,12 +7,16 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using TryWebAPI0813.Models;
 
 namespace TryWebAPI0813.Controllers
 {
     [RoutePrefix("products")]
+    [EnableCors(origins: "*",
+                    headers: "*",
+                    methods: "*")]
     public class ProductsController : ApiController
     {
         private FabricsEntities db = new FabricsEntities();

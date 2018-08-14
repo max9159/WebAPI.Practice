@@ -13,6 +13,7 @@ namespace TryWebAPI0813
     {
         public static void Register(HttpConfiguration config)
         {
+            config.EnableCors();
             // Web API configuration and services
             config.Filters.Add(new MyExceptionAttribute());
 
